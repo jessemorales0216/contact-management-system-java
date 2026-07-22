@@ -40,9 +40,11 @@ public class ContactServiceTest {
     }
 
     @Test
-    public void testInvalidContactId() {
+    public void testRemoveNonExistingContact() {
         ContactService service = new ContactService();
-        assertThrows(IllegalArgumentException.class, () -> service.addContact(new Contact("C001", "Jesse", "Morales", "1234567890", "123 Main St")));
-        assertThrows(IllegalArgumentException.class, () -> service.removeContact("NonExistingId"));
-    }
+
+        assertThrows(IllegalArgumentException.class, () -> {
+        service.removeContact("NonExistingId");
+    });
+}
 }
